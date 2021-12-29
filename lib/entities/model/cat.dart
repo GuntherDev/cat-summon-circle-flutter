@@ -4,7 +4,6 @@ class Cat {
   List<String>? _tags;
   String? _url;
 
-  //defining named parameters
   Cat({String? id, String? createdAt, List<String>? tags, String? url})
       : _id = id,
         _createdAt = createdAt,
