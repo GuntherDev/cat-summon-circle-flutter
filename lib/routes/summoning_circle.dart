@@ -12,23 +12,21 @@ class SummoningCircle extends StatelessWidget {
       Get.put(ControllerSummoningCircle());
 
   @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-        body: Stack(
-      children: [
-        Container(
-          width: double.infinity,
-          height: double.infinity,
-          color: Color.fromRGBO(169, 243, 0, 100),
-          child: Column(
-            children: [title(), circle(context), meowButton()],
+  Widget build(BuildContext context) => Scaffold(
+          body: Stack(
+        children: [
+          Container(
+            width: double.infinity,
+            height: double.infinity,
+            color: const Color.fromRGBO(169, 243, 0, 100),
+            child: Column(
+              children: [title(), circle(context), meowButton()],
+            ),
           ),
-        ),
-        leftCat(context),
-        rightCat(context)
-      ],
-    ));
-  }
+          leftCat(context),
+          rightCat(context)
+        ],
+      ));
 
   Widget title() => Padding(
         padding: const EdgeInsets.only(top: 40.0),
@@ -84,15 +82,41 @@ class SummoningCircle extends StatelessWidget {
 
   Widget checkPlaceholder() =>
       Obx(() => controllerSummoningCircle.cat.value.url.isEmpty
-          ? Container(color: Colors.red)
+          ? placeholder()
           : Image.network(baseUrl + controllerSummoningCircle.cat.value.url));
 
   Widget fetchGif() => Obx(() => controllerSummoningCircle.hasError.value
-      ? Container(color: Colors.red)
+      ? errorBox()
       : checkPlaceholder());
 
   Widget showLoading() => Obx(() => controllerSummoningCircle.isLoading.value
-      ? CircularProgressIndicator(
+      ? const CircularProgressIndicator(
           valueColor: AlwaysStoppedAnimation<Color>(Colors.blue))
       : fetchGif());
+
+  Widget errorBox() => Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Image.asset(sadCatAsset, width: 150, height: 150),
+            Container(
+              height: 150,
+              width: 200,
+              decoration: BoxDecoration(
+                  color: Colors.black,
+                  border: Border.all(
+                    color: Colors.black,
+                    width: 5,
+                  ),
+                  borderRadius: BorderRadius.circular(12)),
+              child: Text("Sorry, couldn't find a cat.",
+                  style: GoogleFonts.patrickHand(
+                      fontSize: 24, color: Colors.white)),
+              padding: const EdgeInsets.all(20),
+            ),
+          ],
+        ),
+      );
+
+  Widget placeholder() => Container();
 }
