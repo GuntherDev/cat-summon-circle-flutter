@@ -1,16 +1,33 @@
-# cat_summon_circle_flutter
+# A little about me
 
-A new Flutter project.
+Hello, My Name is Gunther Nunes, I'm currently 27 years old. I started to study Flutter about 
+3 months ago duo to the college graduation project.
 
-## Getting Started
+I decided to use this time that I'm studying to create an application mixing learning with my 
+personal tastes. I really like games a lot, I decided to create something that would be useful for 
+the community of one of these games, a kind of database or "wiki". (Still under development by the way).
 
-This project is a starting point for a Flutter application.
+I got this challenge through my classmate who followed my personal project closely and helped me a 
+lot with it.
 
-A few resources to get you started if this is your first Flutter project:
+So... I gained this opportunity to use the knowledge I have been acquiring and develop this 
+challenge provided by Azumo. I admit I am very happy to receive this opportunity, I hope you like it.
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+# The Challenge itself
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+The challenge was to create an interface that contained a button to search for cat gifs.
+the fetch was done using the API [CATAAS](https://cataas.com/#/).
+
+I took the liberty of adding some visuals, I put a summoning circle as a reference to the Fate series (japanese animation). 
+So when you hit the button, you would be "summoning" a new cat.
+
+# Dependencies
+
+I used the following dependencies during the project:
+
+- [Build_runner:](https://pub.dev/packages/build_runner) Code generation.
+- [Dio:](https://pub.dev/packages/dio) HTTP client for Dart. (Also best Jojo's Bizarre Adventure villain).
+- [GetX:](https://pub.dev/packages/get) State manager.
+- [Google_fonts:](https://pub.dev/packages/google_fonts) Used on the texts.
+- [Retrofit:](https://pub.dev/packages/retrofit) Dio client that makes consuming Rest APIs easier.
+

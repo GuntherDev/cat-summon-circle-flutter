@@ -19,9 +19,9 @@ class SummoningCircle extends StatelessWidget {
         Container(
           width: double.infinity,
           height: double.infinity,
-          color: Colors.lightBlueAccent,
+          color: Color.fromRGBO(169, 243, 0, 100),
           child: Column(
-            children: [title(), circle(), meowButton()],
+            children: [title(), circle(context), meowButton()],
           ),
         ),
         leftCat(context),
@@ -30,64 +30,69 @@ class SummoningCircle extends StatelessWidget {
     ));
   }
 
-  Widget title() {
-    return Padding(
-      padding: const EdgeInsets.only(top: 40.0),
-      child: Text(
-        "CAT SUMMONING CIRCLE",
-        style: GoogleFonts.staatliches(fontSize: 40),
-      ),
-    );
-  }
-
-  Widget circle() {
-    return Center(
-      child: Stack(
-        alignment: Alignment.center,
-        children: [
-          Image.asset(summoningCircleAsset),
-          //Obx(() => Image.network(controllerSummoningCircle.cat.value.url);
-        ],
-      ),
-    );
-  }
-
-  Widget meowButton() {
-    return SizedBox(
-        width: 150,
-        height: 50,
-        child: ElevatedButton(
-            onPressed: () async =>
-                await controllerSummoningCircle.getCat(controller.text),
-            style: ButtonStyle(
-                backgroundColor: MaterialStateProperty.all(Colors.black)),
-            child: const Text("MEOW")));
-  }
-
-  Widget leftCat(context) {
-    return Positioned(
-      bottom: 0,
-      child: ClipRRect(
-        borderRadius: BorderRadius.circular(8.0),
-        child: Image.asset(
-          leftCatAsset,
-          width: MediaQuery.of(context).size.width * 0.15,
+  Widget title() => Padding(
+        padding: const EdgeInsets.only(top: 40.0),
+        child: Text(
+          "CAT SUMMONING CIRCLE",
+          style: GoogleFonts.staatliches(fontSize: 40),
         ),
-      ),
-    );
-  }
+      );
 
-  Widget rightCat(context) {
-    return Positioned(
-      bottom: 0,
-      right: 0,
-      child: ClipRRect(
-        borderRadius: BorderRadius.circular(8.0),
-        child: Image.asset(
-          rightCatAsset,
-          width: MediaQuery.of(context).size.width * 0.15,
+  Widget circle(context) => Center(
+        child: Stack(
+          alignment: Alignment.center,
+          children: [
+            Image.asset(summoningCircleAsset,
+                height: MediaQuery.of(context).size.height * 0.60,
+                width: MediaQuery.of(context).size.width * 0.45),
+            showLoading()
+          ],
         ),
-      ),
-    );
-  }
+      );
+
+  Widget meowButton() => SizedBox(
+      width: 150,
+      height: 50,
+      child: ElevatedButton(
+          onPressed: () async => await controllerSummoningCircle.getCat(),
+          style: ButtonStyle(
+              backgroundColor: MaterialStateProperty.all(Colors.black)),
+          child: const Text("MEOW")));
+
+  Widget leftCat(context) => Positioned(
+        bottom: 0,
+        child: ClipRRect(
+          borderRadius: BorderRadius.circular(8.0),
+          child: Image.asset(
+            leftCatAsset,
+            width: MediaQuery.of(context).size.width * 0.15,
+          ),
+        ),
+      );
+
+  Widget rightCat(context) => Positioned(
+        bottom: 0,
+        right: 0,
+        child: ClipRRect(
+          borderRadius: BorderRadius.circular(8.0),
+          child: Image.asset(
+            rightCatAsset,
+            width: MediaQuery.of(context).size.width * 0.15,
+          ),
+        ),
+      );
+
+  Widget checkPlaceholder() =>
+      Obx(() => controllerSummoningCircle.cat.value.url.isEmpty
+          ? Container(color: Colors.red)
+          : Image.network(baseUrl + controllerSummoningCircle.cat.value.url));
+
+  Widget fetchGif() => Obx(() => controllerSummoningCircle.hasError.value
+      ? Container(color: Colors.red)
+      : checkPlaceholder());
+
+  Widget showLoading() => Obx(() => controllerSummoningCircle.isLoading.value
+      ? CircularProgressIndicator(
+          valueColor: AlwaysStoppedAnimation<Color>(Colors.blue))
+      : fetchGif());
 }

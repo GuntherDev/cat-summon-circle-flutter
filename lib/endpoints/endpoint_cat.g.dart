@@ -8,7 +8,7 @@ part of 'endpoint_cat.dart';
 
 class _EndpointCat implements EndpointCat {
   _EndpointCat(this._dio, {this.baseUrl}) {
-    baseUrl ??= 'https://cataas.com/cat/';
+    baseUrl ??= 'https://cataas.com';
   }
 
   final Dio _dio;
@@ -16,14 +16,14 @@ class _EndpointCat implements EndpointCat {
   String? baseUrl;
 
   @override
-  Future<Cat> getCat(cat) async {
+  Future<Cat> getCat() async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     final _result = await _dio.fetch<Map<String, dynamic>>(_setStreamType<Cat>(
         Options(method: 'GET', headers: _headers, extra: _extra)
-            .compose(_dio.options, '${cat}/json',
+            .compose(_dio.options, '/cat/gif?json=true',
                 queryParameters: queryParameters, data: _data)
             .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
     final value = Cat.fromJson(_result.data!);

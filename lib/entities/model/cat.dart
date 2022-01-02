@@ -1,10 +1,10 @@
 class Cat {
   String? _id;
   String? _createdAt;
-  List<String>? _tags;
+  List? _tags;
   String? _url;
 
-  Cat({String? id, String? createdAt, List<String>? tags, String? url})
+  Cat({String? id, String? createdAt, List? tags, String? url})
       : _id = id,
         _createdAt = createdAt,
         _tags = tags,
@@ -17,8 +17,8 @@ class Cat {
     _url = json["url"];
   }
 
-  String? get id => _id;
-  String? get createdAt => _createdAt;
-  List<String>? get tags => _tags;
-  String? get url => _url;
+  String get id => _id ?? "";
+  String get createdAt => _createdAt ?? "";
+  List get tags => _tags ?? [];
+  String get url => _url ?? "";
 }
