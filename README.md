@@ -1,7 +1,7 @@
 # A little about me
 
 Hello, My Name is Gunther Nunes, I'm currently 27 years old. I started to study Flutter about 
-3 months ago duo to the college graduation project.
+3 months ago due to the college graduation project.
 
 I decided to use this time that I'm studying to create an application mixing learning with my 
 personal tastes. I like gaming a lot, so I decided to create something that would be useful for 
