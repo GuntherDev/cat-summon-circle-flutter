@@ -1,4 +1,4 @@
-import 'package:cat_summon_circle_flutter/routes/summoning_circle.dart';
+import 'package:cat_summon_circle_flutter/src/summoning_circle.dart';
 import 'package:flutter/material.dart';
 
 void main() {
